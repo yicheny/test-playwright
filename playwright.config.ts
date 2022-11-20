@@ -11,8 +11,9 @@ import { devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 const config: PlaywrightTestConfig = {
+  // 测试目录
   testDir: './tests',
-  /* Maximum time one test can run for. */
+  /* 最长等待时间 */
   timeout: 30 * 1000,
   expect: {
     /**
@@ -21,28 +22,29 @@ const config: PlaywrightTestConfig = {
      */
     timeout: 5000
   },
-  /* Run tests in files in parallel */
+  /* 是否并行测试 */
   fullyParallel: true,
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
+  /* 如果测试出错则令CI构建失败 */
   forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
+  /* 重试次数 */
   retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
+  /* 进程数 */
   workers: process.env.CI ? 1 : undefined,
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
+  /* 导出的Report类型. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  /*以下所有项目的共享设置. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
+    /* 每个操作（如"click()"）所需的最长时间。默认值为0（无限制）。 */
     actionTimeout: 0,
-    /* Base URL to use in actions like `await page.goto('/')`. */
+
+    /* 在使用 `await page.goto('/')` 时所跳转的基础URL */
     // baseURL: 'http://localhost:3000',
 
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    /* 测试出错时，设置什么时候追踪收集报错信息. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },
 
-  /* Configure projects for major browsers */
+  /* 为项目设置使用的浏览器 */
   projects: [
     {
       name: 'chromium',
@@ -51,21 +53,21 @@ const config: PlaywrightTestConfig = {
       },
     },
 
-    {
-      name: 'firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-      },
-    },
+    // {
+    //   name: 'firefox',
+    //   use: {
+    //     ...devices['Desktop Firefox'],
+    //   },
+    // },
+    //
+    // {
+    //   name: 'webkit',
+    //   use: {
+    //     ...devices['Desktop Safari'],
+    //   },
+    // },
 
-    {
-      name: 'webkit',
-      use: {
-        ...devices['Desktop Safari'],
-      },
-    },
-
-    /* Test against mobile viewports. */
+    /* 针对移动视口进行测试。*/
     // {
     //   name: 'Mobile Chrome',
     //   use: {
@@ -79,7 +81,7 @@ const config: PlaywrightTestConfig = {
     //   },
     // },
 
-    /* Test against branded browsers. */
+    /* 针对品牌浏览器进行测试。 */
     // {
     //   name: 'Microsoft Edge',
     //   use: {
@@ -94,10 +96,10 @@ const config: PlaywrightTestConfig = {
     // },
   ],
 
-  /* Folder for test artifacts such as screenshots, videos, traces, etc. */
+  // 用于放置测试数据/结果的目录，比如说截图、音频、收集的报错信息等
   // outputDir: 'test-results/',
 
-  /* Run your local dev server before starting the tests */
+  /* 在开始测试之前运行本地开发服务器 */
   // webServer: {
   //   command: 'npm run start',
   //   port: 3000,
