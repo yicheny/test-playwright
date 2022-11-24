@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test'
-import { text } from 'stream/consumers'
 
 test.describe('test describe', () => {
   test('one', async ({ page }) => {
