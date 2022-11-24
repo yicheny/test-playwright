@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test --headed",
+    "test tag":"npx playwright test --grep @abc",
+    "test skip tag":"npx playwright test --grep-invert @abc",
     "codegen": "npx playwright codegen www.baidu.com"
   },
   "keywords": [],
